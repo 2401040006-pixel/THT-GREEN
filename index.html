@@ -557,6 +557,23 @@ label.f{display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--muted)}
 }
 .line-art{overflow:hidden}
 .line-art img{width:100%;height:100%;object-fit:cover;display:block;border-radius:14px}
+MỚI SỬA
+/* chọn sản phẩm trong giỏ */
+.line.sel{grid-template-columns:26px 76px 1fr auto}
+.line.off .line-art,.line.off b{opacity:.5}
+.line input[type=checkbox],.sel-all input{width:20px;height:20px;padding:0;accent-color:var(--brand);cursor:pointer}
+.sel-all{display:flex;align-items:center;gap:10px;font-weight:600;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.sel-all .hint{margin-left:auto;font-weight:400;text-align:right}
+@media (max-width:560px){
+  .line.sel{grid-template-columns:26px 60px 1fr}
+  .line.sel .lp{grid-column:2/-1;text-align:left}
+  .line.sel .lp button{margin-left:0}
+}
+/* thông báo cập nhật đơn qua email */
+.order-mail{display:flex;gap:14px;text-align:left;margin:20px 0;padding:18px 20px;border-radius:16px;background:var(--soft);border:1.5px solid var(--brand)}
+.order-mail .i{width:28px;height:28px;color:var(--brand-ink);margin-top:2px}
+.order-mail p{margin:4px 0 0;color:var(--muted)}
+.order-mail p b{color:var(--fg)}
 
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -579,6 +596,8 @@ label.f{display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--muted)}
 <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></symbol>
 <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
 <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-7z"/></symbol>
+<!-- MỚI SỬA  -->
+ <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
 </defs></svg>
 <div class="topbar"><div class="wrap"><p>Student project – E-Business, Hanoi University · Sản phẩm chỉ là concept và sẽ không được bán</p></div></div>
 
@@ -619,7 +638,7 @@ label.f{display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--muted)}
         <article class="slide">
           <div><h2>Bình giữ nhiệt inox 304, nóng 12 giờ, lạnh 24 giờ</h2><p>Hai lớp chân không, nắp kín, dùng được hằng ngày cho đi làm và đi học. Một chiếc bình thay hàng trăm ly nhựa mỗi năm.</p><a class="btn btn-primary" href="#san-pham" data-shopcat="binh">Xem bình giữ nhiệt <svg class="i"><use href="#i-go"/></svg></a></div>
           <div class="slide-art">
-             <img src="Image/binh-nuoc-co-quai-4mau.jpg" alt="Sản phẩm xanh THT Green">
+             <img src="Image/ẢNH_CÓ_QUAI_4_MÀU.png" alt="Sản phẩm xanh THT Green">
           </div>
         </article>
         <article class="slide">
@@ -735,8 +754,7 @@ label.f{display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--muted)}
 <main class="view" id="v-thanh-toan" hidden>
   <div class="wrap page-title"><div class="crumbs"><a href="#home">Trang chủ</a><span>/</span><a href="#gio-hang">Giỏ hàng</a><span>/</span><span>Thanh toán</span></div><h1>Thanh toán</h1></div>
   <div class="wrap"><div class="panel" style="margin-top:16px;background:var(--badge);color:var(--badge-fg);font-weight:600">Student project – E-Business, Hanoi University. Sản phẩm chỉ là concept và sẽ không được bán. Vui lòng không nhập thông tin thật.</div></div>
-  <div class="wrap" id="coEmpty" hidden><div class="panel empty" style="margin-top:24px"><p>Giỏ hàng đang trống, chưa có gì để thanh toán.</p><a class="btn btn-primary" href="#san-pham">Xem sản phẩm</a></div></div>
-  <form class="wrap cart-layout" id="coForm" novalidate>
+<div class="wrap" id="coEmpty" hidden><div class="panel empty" style="margin-top:24px"><p>Bạn chưa chọn sản phẩm nào để thanh toán.</p><a class="btn btn-primary" href="#gio-hang">Quay lại giỏ hàng</a></div></div>  <form class="wrap cart-layout" id="coForm" novalidate>
     <div class="stack">
       <section class="panel"><h2>Thông tin người nhận</h2>
         <div class="form-grid">
@@ -1058,7 +1076,7 @@ const RAW=[
    desc:'Dung tích vừa phải cho đi học, đi làm, tập luyện và hoạt động ngoài trời.',
    eco:'Dùng lại hằng ngày thay cho chai nước nhựa.'}],
 
- ['binh','binh-nuoc-quai-1000','Bình nước có quai xách 1000ml',129000,169000,'Image/binh-nuoc-co-quai-4mau.jpg',{
+ ['binh','binh-nuoc-quai-1000','Bình nước có quai xách 1000ml',129000,169000,'Image/ẢNH_CÓ_QUAI_4_MÀU.png',{
    short:'1000ml, có quai xách, hợp gym, dã ngoại, di chuyển nhiều.',
    sold:950,
    optLabel:'Dung tích',
@@ -1144,26 +1162,31 @@ let toastT;
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2600)}
 
 /* ---------- giỏ hàng ---------- */
-let cart;
-try{const raw=store.get('tht_cart');cart=raw?JSON.parse(raw):null}catch(e){cart=null}
-if(!Array.isArray(cart))cart=[{slug:'hop-com-1-ngan',ci:0,vi:0,qty:2},{slug:'binh-nuoc',ci:0,vi:0,qty:1}]; // đơn mẫu theo brief
-else{
-  const cartCountBeforeCleanup=cart.length;
-  cart=cart.filter(i=>P[i.slug]);
-  if(cart.length!==cartCountBeforeCleanup)store.set('tht_cart',JSON.stringify(cart));
+let user=null;try{user=JSON.parse(store.get('tht_user')||'null')}catch(e){}
+const cartKey=()=>user?'tht_cart_'+user.email.toLowerCase():null;
+let cart=[];
+function loadCart(){
+  cart=[];const k=cartKey();if(!k)return;
+  try{const a=JSON.parse(store.get(k)||'[]');if(Array.isArray(a))cart=a.filter(i=>P[i.slug])}catch(e){cart=[]}
+}
+loadCart();
+function requireLogin(msg){
+  if(user)return true;
+  toast(msg||'Vui lòng đăng nhập để mua hàng');authOpen();return false;
 }
 let coupon=null,lastOrder=null,lastQ='';
-function saveCart(){store.set('tht_cart',JSON.stringify(cart));updateCount()}
+function saveCart(){const k=cartKey();if(k)store.set(k,JSON.stringify(cart));updateCount()}
 function updateCount(){$('#cartCount').textContent=cart.reduce((s,i)=>s+i.qty,0)}
 const key=i=>i.slug+'|'+i.ci+'|'+i.vi;
-function addItem(slug,ci,vi,q){const k=slug+'|'+ci+'|'+vi,ex=cart.find(i=>key(i)===k);ex?ex.qty=Math.min(P[slug].stock,ex.qty+q):cart.push({slug,ci,vi,qty:q});saveCart()}
-const lineOf=i=>{const p=P[i.slug],v=p.variants[i.vi];return{p,v,c:p.colors[i.ci],total:v.price*i.qty}};
-const subtotal=()=>cart.reduce((s,i)=>s+lineOf(i).total,0);
+function addItem(slug,ci,vi,q){const k=slug+'|'+ci+'|'+vi,ex=cart.find(i=>key(i)===k);ex?ex.qty=Math.min(P[slug].stock,ex.qty+q):cart.push({slug,ci,vi,qty:q,sel:true});saveCart()}const lineOf=i=>{const p=P[i.slug],v=p.variants[i.vi];return{p,v,c:p.colors[i.ci],total:v.price*i.qty}};
+const picked=()=>cart.filter(i=>i.sel!==false);
+function buyOnly(slug,ci,vi){const k=slug+'|'+ci+'|'+vi;cart.forEach(i=>i.sel=(key(i)===k));saveCart();}
+const subtotal=()=>picked().reduce((s,i)=>s+lineOf(i).total,0);
 const shipFee=s=>s===0||s>=500000?0:30000;
 const lineImg=(p,c,v)=>{const src=(c.imgs&&c.imgs[0])||(p.imgs&&p.imgs[0]);
   return src?`<img src="${src}" alt="${esc(p.name)}">`:art(p.type,c.h,v.compart||2,0,p.badge)};
-function lineHTML(i,edit){const{p,v,c,total}=lineOf(i);
-  return `<div class="line"><div class="line-art" style="background:var(${p.tint})">${lineImg(p,c,v)}</div>
+function lineHTML(i,edit){const{p,v,c,total}=lineOf(i),on=i.sel!==false;
+  return `<div class="line${edit?' sel'+(on?'':' off'):''}">${edit?`<input type="checkbox" data-sel="${key(i)}" ${on?'checked':''} aria-label="Chọn sản phẩm để thanh toán">`:''}<div class="line-art" style="background:var(${p.tint})">${lineImg(p,c,v)}</div>
   <div><b>${esc(vTitle(p,v))}</b><span class="var">${esc(c.n)} / ${esc(vLabel(v))}${edit?'':' × '+i.qty}</span>
   ${edit?`<div class="qty"><button type="button" data-act="minus" data-k="${key(i)}" aria-label="Giảm">−</button><output>${i.qty}</output><button type="button" data-act="plus" data-k="${key(i)}" aria-label="Tăng">+</button></div>`:''}</div>
   <div class="lp">${money(total)}${edit?`<button type="button" data-act="del" data-k="${key(i)}">Xóa</button>`:''}</div></div>`}
@@ -1244,8 +1267,8 @@ const paintGal=()=>{N=imgList().length||4;S.gi=Math.min(S.gi,N-1);const ids=Arra
     else if(b.id==='gPrev'){stopGal();goG(S.gi-1)}else if(b.id==='gNext'){stopGal();goG(S.gi+1)}
     else if(b.id==='qMinus'){S.qty=Math.max(1,S.qty-1);$('#qOut',root).textContent=S.qty}
     else if(b.id==='qPlus'){S.qty=Math.min(p.stock,S.qty+1);$('#qOut',root).textContent=S.qty}
-    else if(b.id==='addBtn'){addItem(slug,S.ci,S.vi,S.qty);toast('Đã thêm vào giỏ hàng')}
-    else if(b.id==='buyBtn'){addItem(slug,S.ci,S.vi,S.qty);location.hash='thanh-toan'}};
+    else if(b.id==='addBtn'){if(!requireLogin('Vui lòng đăng nhập để thêm vào giỏ hàng'))return;addItem(slug,S.ci,S.vi,S.qty);toast('Đã thêm vào giỏ hàng')}
+    else if(b.id==='buyBtn'){if(!requireLogin('Vui lòng đăng nhập để mua hàng'))return;addItem(slug,S.ci,S.vi,S.qty);buyOnly(slug,S.ci,S.vi);location.hash='thanh-toan'}};
   const g=$('#gal',root);g.onmouseenter=stopGal;g.onfocusin=stopGal;
   paintGal();paintInfo();
   if(!reduce&&N>1)galTimer=setInterval(()=>goG(S.gi+1),4500);
@@ -1265,13 +1288,17 @@ function renderSearch(){
 function renderCart(){
   const r=$('#cartRoot');
   if(!cart.length){r.innerHTML=`<div class="panel empty" style="margin-top:24px"><p>Giỏ hàng của bạn đang trống.</p><a class="btn btn-primary" href="#san-pham">Xem sản phẩm</a></div>`;return}
-  const s=subtotal(),need=500000-s,ship=shipFee(s);
-  r.innerHTML=`<div class="cart-layout"><section class="panel"><h2>Sản phẩm (${cart.reduce((a,i)=>a+i.qty,0)})</h2>${cart.map(i=>lineHTML(i,true)).join('')}</section>
+  const pk=picked(),n=pk.reduce((a,i)=>a+i.qty,0),s=subtotal(),need=500000-s,ship=shipFee(s);
+  r.innerHTML=`<div class="cart-layout"><section class="panel"><h2>Sản phẩm trong giỏ (${cart.reduce((a,i)=>a+i.qty,0)})</h2>
+   <label class="sel-all"><input type="checkbox" id="selAll" ${pk.length===cart.length?'checked':''}>Chọn tất cả<span class="hint">Chỉ sản phẩm được tick mới được thanh toán</span></label>
+   ${cart.map(i=>lineHTML(i,true)).join('')}</section>
   <aside class="panel"><h3>Tóm tắt đơn hàng</h3>
-   <div class="ship-bar"><i style="width:${Math.min(100,s/5000)}%"></i></div><p class="hint ${need<=0?'ok':''}">${need>0?`Mua thêm ${money(need)} để được miễn phí vận chuyển toàn quốc.`:'Đơn hàng của bạn được miễn phí vận chuyển.'}</p>
+   <p class="hint">Đã chọn ${pk.length} sản phẩm (${n} món)</p>
+   <div class="ship-bar"><i style="width:${Math.min(100,s/5000)}%"></i></div><p class="hint ${need<=0&&pk.length?'ok':''}">${!pk.length?'Hãy tick chọn sản phẩm bạn muốn thanh toán.':need>0?`Mua thêm ${money(need)} để được miễn phí vận chuyển toàn quốc.`:'Đơn hàng của bạn được miễn phí vận chuyển.'}</p>
    <div class="sum-row" style="margin-top:12px"><span>Tạm tính</span><span>${money(s)}</span></div><div class="sum-row"><span>Phí vận chuyển</span><span>${ship?money(ship):'Miễn phí'}</span></div>
    <div class="sum-row total"><span>Tổng cộng</span><span>${money(s+ship)}</span></div>
-   <a class="btn btn-primary" href="#thanh-toan" style="width:100%;margin-top:16px">Tiến hành thanh toán</a><a class="btn btn-ghost" href="#san-pham" style="width:100%;margin-top:10px">Mua thêm</a></aside></div>`;
+   ${pk.length?`<a class="btn btn-primary" href="#thanh-toan" style="width:100%;margin-top:16px">Thanh toán (${pk.length})</a>`:`<button class="btn btn-primary" type="button" disabled style="width:100%;margin-top:16px">Thanh toán</button>`}
+   <a class="btn btn-ghost" href="#san-pham" style="width:100%;margin-top:10px">Mua thêm</a></aside></div>`;
 }
 function cartAction(e){const b=e.target.closest('[data-act]');if(!b)return;const it=cart.find(i=>key(i)===b.dataset.k);if(!it)return;
   if(b.dataset.act==='plus')it.qty=Math.min(P[it.slug].stock,it.qty+1);
@@ -1279,9 +1306,9 @@ function cartAction(e){const b=e.target.closest('[data-act]');if(!b)return;const
   else cart=cart.filter(i=>i!==it);
   saveCart();renderCart()}
 function renderCheckout(){
-  const has=cart.length>0;$('#coEmpty').hidden=has;$('#coForm').hidden=!has;if(!has)return;
+  const has=picked().length>0;$('#coEmpty').hidden=has;$('#coForm').hidden=!has;if(!has)return;
   const s=subtotal(),disc=coupon?Math.round(s*coupon.pct/100):0,ship=shipFee(s),keep=$('#coupon')?$('#coupon').value:'';
-  $('#coSummary').innerHTML=`<h2>Đơn hàng</h2>${cart.map(i=>lineHTML(i,false)).join('')}
+  $('#coSummary').innerHTML=`<h2>Đơn hàng</h2>${picked().map(i=>lineHTML(i,false)).join('')}
    <div class="coupon"><input id="coupon" placeholder="Mã giảm giá" value="${esc(keep)}" aria-label="Mã giảm giá"><button class="btn btn-ghost" type="button" id="couponBtn" style="padding:10px 20px">Áp dụng</button></div>
    <p class="hint ${coupon?'ok':''}" id="couponMsg">${coupon?`Đã áp dụng mã ${coupon.code}, giảm ${coupon.pct}%.`:'Dùng thử mã THT10 để giảm 10%.'}</p>
    <div class="sum-row" style="margin-top:10px"><span>Tạm tính</span><span>${money(s)}</span></div>${disc?`<div class="sum-row"><span>Giảm giá</span><span>−${money(disc)}</span></div>`:''}
@@ -1298,32 +1325,34 @@ function qrSvg(seed){let s=0;for(const ch of seed)s=(s*31+ch.charCodeAt(0))>>>0;
     if(on)o+=`<rect x="${x*u}" y="${y*u}" width="${u}" height="${u}"/>`}
   return `<svg viewBox="0 0 ${N*u} ${N*u}" width="170" height="170" style="background:#fff;padding:8px;border-radius:12px" role="img" aria-label="Mã QR minh họa"><g fill="#10241B">${o}</g></svg>`}
 function submitOrder(e){e.preventDefault();
+  if(!picked().length){location.hash='gio-hang';return}
   const f=id=>$(id).value.trim(),err=$('#coErr');
-  const miss=[['#coName','họ và tên'],['#coPhone','số điện thoại'],['#coCity','tỉnh / thành phố'],['#coDist','quận / huyện'],['#coAddr','địa chỉ nhận hàng']].find(x=>!f(x[0]));
+  const miss=[['#coName','họ và tên'],['#coPhone','số điện thoại'],['#coEmail','email'],['#coCity','tỉnh / thành phố'],['#coDist','quận / huyện'],['#coAddr','địa chỉ nhận hàng']].find(x=>!f(x[0]));
   let msg=miss?`Vui lòng nhập ${miss[1]}.`:'',focus=miss&&miss[0];
   if(!msg&&f('#coPhone').replace(/\D/g,'').length<9){msg='Số điện thoại cần có ít nhất 9 chữ số.';focus='#coPhone'}
   if(!msg&&f('#coEmail')&&!/^\S+@\S+\.\S+$/.test(f('#coEmail'))){msg='Email chưa đúng định dạng.';focus='#coEmail'}
   if(msg){err.textContent=msg;err.hidden=false;$(focus).focus();return}
   err.hidden=true;
   const s=subtotal(),disc=coupon?Math.round(s*coupon.pct/100):0,total=s-disc+shipFee(s);
-  lastOrder={code:'THT'+String(Date.now()).slice(-7),total,pay:$('input[name=pay]:checked').value,name:f('#coName'),addr:`${f('#coAddr')}, ${f('#coDist')}, ${f('#coCity')}`};
-  cart=[];coupon=null;saveCart();location.hash='hoan-tat'}
+  lastOrder={code:'THT'+String(Date.now()).slice(-7),total,pay:$('input[name=pay]:checked').value,name:f('#coName'),email:(user&&user.email)||f('#coEmail'),addr:`${f('#coAddr')}, ${f('#coDist')}, ${f('#coCity')}`};
+  cart=cart.filter(i=>i.sel===false);coupon=null;saveCart();location.hash='hoan-tat'}
 function renderDone(){
   if(!lastOrder){location.hash='home';return}
   const o=lastOrder,qr=o.pay.includes('QR');
   $('#doneRoot').innerHTML=`<div class="done"><div class="jic">${ico('check','width:34px;height:34px')}</div><h1>Đặt hàng thành công</h1><p>Cảm ơn ${esc(o.name)} đã chọn sống xanh cùng THT Green.</p><div class="code">Mã đơn ${o.code}</div>
    <p>Giao đến: ${esc(o.addr)}</p><p>Hình thức: ${esc(o.pay)}</p><p><b>Tổng thanh toán: ${money(o.total)}</b></p>
+   <div class="order-mail">${ico('mail')}<div><b>Đơn hàng của bạn sẽ được cập nhật qua email</b><p>Mọi thay đổi về trạng thái đơn (xác nhận, đóng gói, giao hàng, hoàn tất) sẽ được gửi tới <b>${esc(o.email)}</b>. Vui lòng kiểm tra hộp thư (cả mục Spam) để theo dõi đơn.</p></div></div>
    ${qr?`<div style="margin:20px 0">${qrSvg(o.code)}<p class="hint" style="margin-top:8px">Mã QR minh họa. Nội dung chuyển khoản: ${o.code}</p></div>`:''}
    <p class="hint" style="margin:16px 0 24px">Đây là đơn hàng thử nghiệm của dự án sinh viên (Student project – E-Business, Hanoi University). Sản phẩm chỉ là concept, sẽ không được bán và không giao hàng.</p><a class="btn btn-primary" href="#home">Về trang chủ</a></div>`}
 
 /* ---------- đăng nhập / đăng ký (mô phỏng) ---------- */
-let user=null;try{user=JSON.parse(store.get('tht_user')||'null')}catch(e){}
+
 function paintAuth(){$('#authLbl').textContent=user?`Chào, ${user.name} · Thoát`:'Đăng nhập / Đăng ký'}
 function authTab(reg){$('#loginForm').hidden=reg;$('#regForm').hidden=!reg;$('#tabLogin').setAttribute('aria-selected',!reg);$('#tabReg').setAttribute('aria-selected',reg);$('#authErr').hidden=true}
 function authOpen(){authTab(false);$('#authModal').hidden=false;$('#liEmail').focus()}
 function authClose(){$('#authModal').hidden=true}
 function authFail(m){const e=$('#authErr');e.textContent=m;e.hidden=false}
-function authDone(name,email){user={name,email};store.set('tht_user',JSON.stringify(user));paintAuth();authClose();toast(`Xin chào, ${name}`)}
+function authDone(name,email){user={name,email};store.set('tht_user',JSON.stringify(user));loadCart();updateCount();paintAuth();authClose();toast(`Xin chào, ${name}`);route()}
 const okMail=v=>/^\S+@\S+\.\S+$/.test(v);
 /* ---------- trang sản phẩm: lọc, sắp xếp, xem thêm ---------- */
 const PAGE=12,SHOP_STATE={cat:'all',sort:'def',shown:PAGE};
@@ -1354,6 +1383,11 @@ const SIMPLE=['home','san-pham','tim-kiem','chinh-sach','gio-hang','thanh-toan',
 function route(){
   let h=decodeURIComponent(location.hash.slice(1))||'home',view=h;
   if(P[h])view='product';else if(!SIMPLE.includes(h))view=h='home';
+  if(!user&&(view==='gio-hang'||view==='thanh-toan')){
+  location.hash='home';
+  setTimeout(()=>requireLogin('Vui lòng đăng nhập để xem giỏ hàng'),50);
+  return;
+  }
   $$('.view').forEach(v=>v.hidden=v.id!=='v-'+view);
   stopGal();
   const navKey=['san-pham','product','tim-kiem'].includes(view)?'san-pham':view;
@@ -1375,10 +1409,16 @@ initHero();updateCount();paintAuth();
 $('#searchForm').addEventListener('submit',e=>{e.preventDefault();lastQ=$('#searchInput').value;if(location.hash==='#tim-kiem')route();else location.hash='tim-kiem'});
 $('#searchInput').addEventListener('input',e=>{if(location.hash==='#tim-kiem'){lastQ=e.target.value;renderSearch()}});
 $('#cartRoot').addEventListener('click',cartAction);
+$('#cartRoot').addEventListener('change',e=>{
+  const t=e.target;
+  if(t.id==='selAll')cart.forEach(i=>i.sel=t.checked);
+  else if(t.dataset.sel){const it=cart.find(i=>key(i)===t.dataset.sel);if(it)it.sel=t.checked}
+  else return;
+  saveCart();renderCart()});
 $('#coForm').addEventListener('submit',submitOrder);
 $('#coSummary').addEventListener('click',e=>{if(e.target.id==='couponBtn')applyCoupon()});
 $('#coSummary').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='coupon'){e.preventDefault();applyCoupon()}});
-$('#authBtn').onclick=()=>{if(user){user=null;store.set('tht_user','null');paintAuth();toast('Đã đăng xuất')}else authOpen()};
+$('#authBtn').onclick=()=>{if(user){user=null;store.set('tht_user','null');loadCart();updateCount();paintAuth();toast('Đã đăng xuất');route()}else authOpen()};
 $('#authClose').onclick=authClose;
 $('#authModal').addEventListener('click',e=>{if(e.target.id==='authModal')authClose()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#authModal').hidden)authClose()});
